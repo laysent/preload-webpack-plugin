@@ -77,17 +77,13 @@ class PreloadPlugin {
           // configured to preload all types of chunks or just prefetch chunks as needed.
           if (options.include === undefined || options.include === 'asyncChunks') {
             try {
-              extractedChunks = compilation.chunks.filter(chunk => {
-                for (const chatGroup of chunk._groups) {
-                  return !chatGroup.isInitial();
-                }
-              });
+              extractedChunks = compilation.chunks.filter(chunk => !chunk.canBeInitial());
             } catch (e) {
               extractedChunks = compilation.chunks;
             }
           } else if (options.include === 'initial') {
             try {
-              extractedChunks = compilation.chunks.filter(chunk => chunk.isInitial());
+              extractedChunks = compilation.chunks.filter(chunk => chunk.canBeInitial());
             } catch (e) {
               extractedChunks = compilation.chunks;
             }
