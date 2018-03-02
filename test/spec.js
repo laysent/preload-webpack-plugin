@@ -271,7 +271,7 @@ describe('PreloadPlugin prefetches normal chunks', function() {
       expect(err).toBeFalsy();
       expect(JSON.stringify(result.compilation.errors)).toBe('[]');
       const html = result.compilation.assets['index.html'].source();
-      expect(html).toContain('<link rel="prefetch" href="0');
+      expect(html).toContain('<link rel="prefetch" href="home.js');
       expect(html).toContain('<link rel="prefetch" href="main.js"');
       done();
     });
